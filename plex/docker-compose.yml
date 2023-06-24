@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:1.32.3
+    container_name: plex
+    restart: unless-stopped
+    user: 1000:1000
+    ports:
+      - 32400:32400
+    runtime: nvidia
+    environment:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - VERSION=docker
+      - NVIDIA_VISIBLE_DEVICES=all
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    volumes:
+      - /var/docker/plex/config:/config
+      - ${PLEX_MEDIA}:/data:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.plex.rule=Host(`${PLEX_URL}`)"
+      - "traefik.http.routers.plex.entrypoints=websecure"
+      - "traefik.http.routers.plex.tls=true"
+      - "traefik.http.services.plex.loadbalancer.server.port=32400"
+      - homepage.group=Media & Streaming
+      - homepage.name=Plex
+      - homepage.icon=plex.svg
+      - homepage.href=https://${PLEX_URL}
+      - homepage.description=Plex media server
+    networks:
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external: true

@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  kavita:
+    image: kizaing/kavita:latest
+    container_name: kavita
+    restart: unless-stopped
+    # user: 1000:1000
+    networks:
+      - traefik_proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ${BOOKS}:/books:ro
+      - /var/docker/kavita:/kavita/config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kavita.entrypoints=websecure"
+      - "traefik.http.routers.kavita.rule=Host(`${KAVITA_URL}`)"
+      - "traefik.http.routers.kavita.tls=true"
+      - "traefik.http.services.kavita.loadbalancer.server.port=5000"
+      - homepage.group=Media & Streaming
+      - homepage.name=Kavita
+      - homepage.icon=kavita.svg
+      - homepage.href=https://${KAVITA_URL}
+      - homepage.description= Novel and manga manager
+
+networks:
+  traefik_proxy:
+    external: true

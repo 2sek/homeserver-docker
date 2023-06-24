@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  traefik:
+    image: "traefik:v2.10"
+    container_name: traefik
+    restart: always
+    networks:
+      - traefik_proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/docker/traefik/config:/etc/traefik
+      - ./config/static.yml:/etc/traefik/traefik.yml:ro
+      - ./config/dynamic.yml:/etc/traefik/dynamic.yml:ro
+      - ./certs:/etc/certs:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_URL}`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - homepage.group=Monitoring
+      - homepage.name=Traefik
+      - homepage.icon=traefik.svg
+      - homepage.href=https://${TRAEFIK_URL} 
+      - homepage.description=Traefik proxy dashboard
+
+networks:
+  traefik_proxy:
+    external: true
