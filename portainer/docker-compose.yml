@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:2.18.3-alpine
     container_name: portainer
     restart: unless-stopped
     volumes:
