@@ -16,7 +16,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/heimdall/config:/config
-    restart: unless-stopped
+    restart: never
     networks:
       - traefik_proxy
 

@@ -5,6 +5,7 @@ services:
     container_name: jellyfin
     # network_mode: host  # DLNA
     restart: unless-stopped
+    user: 1000:1000
     networks:
       - traefik_proxy
     runtime: nvidia
@@ -14,6 +15,7 @@ services:
       - /var/docker/jellyfin/config:/config
       - /var/docker/jellyfin/cache:/cache
       - ${MEDIA_PATH}:/data:ro
+      - ${MEDIA2_PATH}:/external:ro
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
     ports:

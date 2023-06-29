@@ -3,7 +3,7 @@ services:
   plex:
     image: lscr.io/linuxserver/plex:1.32.3
     container_name: plex
-    restart: unless-stopped
+    restart: never
     user: 1000:1000
     ports:
       - 32400:32400

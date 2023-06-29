@@ -10,7 +10,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ${FILEBROWSER_DATA}:/srv
+      - ${FILEBROWSER_DATA}:/data
+      - ${FILEBROWSER_DATA2}:/media
       - ./filebrowser.db:/database.db
     labels:
       - "traefik.enable=true"
@@ -21,7 +22,7 @@ services:
       - "homepage.group=Cloud & Storage"
       - "homepage.name=FileBrowser"
       - "homepage.icon=filebrowser.svg"
-      - "homepage.href=https://${FILEBROWSER_URL}"  
+      - "homepage.href=https://${FILEBROWSER_URL}"
       - homepage.description=Simple cloud storage access
 
 networks:

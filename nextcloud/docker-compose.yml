@@ -15,15 +15,11 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_INITDB_SKIP_TZINFO=1
-    networks:
-      - default
 
   nextcloud-redis:
     image: redis:alpine
     container_name: nextcloud-redis
     hostname: nextcloud-redis
-    networks:
-      - default
     restart: always
     command: redis-server --requirepass ${REDIS_PASSWORD}
 
@@ -66,20 +62,17 @@ services:
       - homepage.description=Private cloud storage
     networks:
       - traefik_proxy
-      - default
 
-  # nextcloud-cron:
-  #   image: nextcloud:latest
-  #   container_name: nextcloud-cron
-  #   restart: always
-  #   user: 1000:1000
-  #   volumes:
-  #     - /var/docker/nextcloud/app:/var/www/html
-  #   entrypoint: /cron.sh
-  #   depends_on:
-  #     - nextcloud-db
-  #     - nextcloud-redis
-
+  nextcloud-cron:
+    image: nextcloud:latest
+    container_name: nextcloud-cron
+    restart: unless-stopped
+    volumes:
+      - ${NEXTCLOUD_DATA}:/var/www/html
+    entrypoint: /cron.sh
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
 
 networks:
   traefik_proxy:
