@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/qbittorrent/config:/config
+      - ${DOWNLOADS}:/data/downloads
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - WEBUI_PORT=8080
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.qbittorrent.rule=Host(`${QBITTORRENT_URL}`)"
+      - "traefik.http.routers.qbittorrent.entrypoints=websecure"
+      - "traefik.http.routers.qbittorrent.tls=true"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+      - "traefik.http.services.qbittorrent.loadbalancer.passhostheader=false"
+      - "traefik.docker.network=traefik-proxy"
+      - homepage.group=Media Management
+      - homepage.name=qBittorrent
+      - homepage.icon=qbittorrent.svg
+      - homepage.href=http://${QBITTORRENT_IP}:8080
+      - homepage.description= Torrents
+
+networks:
+  traefik_proxy:
+    external: true
