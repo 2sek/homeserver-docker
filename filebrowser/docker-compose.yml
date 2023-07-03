@@ -10,8 +10,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ${FILEBROWSER_DATA}:/data
-      - ${FILEBROWSER_DATA2}:/media
+      - ${FILEBROWSER_DATA}:/srv
       - ./filebrowser.db:/database.db
     labels:
       - "traefik.enable=true"

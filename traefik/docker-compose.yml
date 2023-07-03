@@ -22,10 +22,10 @@ services:
       - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_URL}`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
-      - homepage.group=Monitoring
+      - homepage.group=Monitoring & Management
       - homepage.name=Traefik
       - homepage.icon=traefik.svg
-      - homepage.href=https://${TRAEFIK_URL} 
+      - homepage.href=https://${TRAEFIK_URL}
       - homepage.description=Traefik proxy dashboard
 
 networks:

@@ -15,7 +15,7 @@ services:
       - "traefik.http.routers.kuma.entrypoints=websecure"
       - "traefik.http.routers.kuma.tls=true"
       - "traefik.http.services.kuma.loadbalancer.server.port=3001"
-      - homepage.group=Monitoring
+      - homepage.group=Monitoring & Management
       - homepage.name=Uptime Kuma
       - homepage.icon=uptime-kuma.svg
       - homepage.href=https://${KUMA_URL}

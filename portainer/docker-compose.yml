@@ -15,7 +15,7 @@ services:
       - "traefik.http.routers.portainer.rule=Host(`${PORTAINER_URL}`)"
       - "traefik.http.routers.portainer.tls=true"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
-      - homepage.group=Server Management
+      - homepage.group=Monitoring & Management
       - homepage.name=Portainer
       - homepage.icon=portainer.svg
       - homepage.href=https://${PORTAINER_URL}
