@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  prowlarr:
+    container_name: prowlarr
+    image: cr.hotio.dev/hotio/prowlarr
+    networks:
+      - traefik_proxy
+    restart: unless-stopped
+    environment:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+    volumes:
+      - /var/docker/prowlarr/config:/config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.rule=Host(`${PROWLARR_URL}`)"
+      - "traefik.http.routers.prowlarr.entrypoints=websecure"
+      - "traefik.http.routers.prowlarr.tls=true"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+      - homepage.group=Media Management
+      - homepage.name=Prowlarr
+      - homepage.icon=prowlarr.svg
+      - homepage.href=https://${PROWLARR_URL}
+      - homepage.description= Media search & indexing
+
+networks:
+  traefik_proxy:
+    external: true
