@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  paperless-broker:
+    image: docker.io/library/redis:7
+    container_name: paperless-broker
+    restart: unless-stopped
+    volumes:
+      - redisdata:/data
+    networks:
+      - default_paperless
+
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    restart: unless-stopped
+    depends_on:
+      - paperless-broker
+    networks:
+      - traefik_proxy
+      - default_paperless
+    ports:
+      - "8000:8000"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ${DOCS}/data:/usr/src/paperless/data
+      - ${DOCS}/media:/usr/src/paperless/media
+      - ${DOCS}/export:/usr/src/paperless/export
+      - ${DOCS}/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://paperless-broker:6379
+      PAPERLESS_OCR_LANGUAGE: deu
+      USERMAP_UID: 1000
+      USERMAP_GID: 1000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.paperless.entrypoints=web"
+      - "traefik.http.routers.paperless.rule=Host(`${PAPERLESS_URL}`)"
+      - "traefik.http.routers.paperless.tls=false"
+      - "traefik.http.services.paperless.loadbalancer.server.port=8000"
+      - homepage.group=Cloud & Storage
+      - homepage.name=Paperless
+      - homepage.icon=paperless.svg
+      - homepage.href=http://${PAPERLESS_URL}
+      - homepage.description= Document archive & management
+
+networks:
+  traefik_proxy:
+    external: true
+  default_paperless:
+
+volumes:
+  redisdata:
