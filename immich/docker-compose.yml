@@ -33,7 +33,7 @@ services:
     container_name: redis
 # PostgreSQL 14:
   postgres14:
-    image: postgres:14
+    image: postgres:16
     ports:
       - 5432:5432
     container_name: postgres14
