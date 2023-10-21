@@ -1,12 +1,14 @@
 version: '3.8'
 services:
   kavita:
-    image: kizaing/kavita:0.7.8
+    image: lscr.io/linuxserver/kavita:0.7.9
     container_name: kavita
     restart: unless-stopped
-    # user: 1000:1000
     networks:
       - traefik_proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
