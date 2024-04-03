@@ -1,0 +1,67 @@
+version: "3.8"
+services:
+  hortusfox-db:
+    image: mariadb:11.3.2
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+    networks:
+      - default_hortusfox
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      
+  hortusfox-app:
+    image: ghcr.io/danielbrendel/hortusfox-web:v2.5
+    ports:
+      - "8081:80"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - app_images:/var/www/html/public/img
+      - app_logs:/var/www/html/app/logs
+      - app_backup:/var/www/html/public/backup
+      - app_themes:/var/www/html/public/themes
+      - app_migrate:/var/www/html/app/migrations
+    environment:
+      APP_ADMIN_EMAIL: ${ADMIN_EMAIL}
+      APP_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      DB_HOST: hortusfox-db
+      DB_PORT: 3306
+      DB_DATABASE: ${MYSQL_DATABASE}
+      DB_USERNAME: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_CHARSET: "utf8mb4"
+    networks:
+      - traefik_proxy
+      - default_hortusfox
+    depends_on:
+      - hortusfox-db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hortusfox.entrypoints=web"
+      - "traefik.http.routers.hortusfox.rule=Host(`${HORTUSFOX_URL}`)"
+      - "traefik.http.routers.hortusfox.tls=false"
+      - "traefik.http.services.hortusfox.loadbalancer.server.port=8081"
+      - homepage.group=Smart Home
+      - homepage.name=Hortusfox
+      - homepage.icon=hortusfox.svg
+      - homepage.href=http://${HORTUSFOX_URL}
+      - homepage.description= Plant management system
+
+volumes:
+  db_data:
+  app_images:
+  app_logs:
+  app_backup:
+  app_themes:
+  app_migrate:
+
+networks:
+  traefik_proxy:
+    external: true
+  default_hortusfox:
