@@ -1,0 +1,8 @@
+*.env
+certs/
+homepage/config/
+*.log
+*.db
+
+.vscode
+.idea

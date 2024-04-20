@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  traefik:
+    image: traefik:2.11.2
+    container_name: traefik
+    restart: always
+    networks:
+      - traefik_proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config:/etc/traefik/
+      - ./certs:/etc/certs:ro
+    labels:
+      - homepage.group=Monitoring & Management
+      - homepage.name=Traefik
+      - homepage.icon=traefik.svg
+      - homepage.href=https://${TRAEFIK_URL}
+      - homepage.description=Traefik proxy dashboard
+
+networks:
+  traefik_proxy:
+    external: true

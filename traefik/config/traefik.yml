@@ -1,0 +1,33 @@
+global:
+  sendAnonymousUsage: false
+
+api:
+  dashboard: true
+  insecure: false
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    watch: true
+    exposedByDefault: false
+    network: traefik_proxy
+    defaultRule: Host(`{{ normalize .ContainerName }}.homeserver.internal`)
+
+  file:
+    directory: /etc/traefik/dynamic/
+    watch: true
+
+log:
+  level: INFO
+  format: common
+
+entryPoints:
+  web:
+    address: ":80"
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       to: websecure
+    #       scheme: https
+  websecure:
+    address: ":443"

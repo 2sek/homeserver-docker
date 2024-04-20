@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  filebrowser:
+    image: hurlenko/filebrowser:v2.28.0
+    container_name: filebrowser
+    user: 1000:1000   
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+    volumes:
+      - ${DATA_PATH}:/data/data
+      - ${MEDIA_PATH}:/data/media
+      - ./config:/config
+    environment:
+      - FB_BASEURL=/filebrowser
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filebrowser.entrypoints=websecure"
+      - "traefik.http.routers.filebrowser.tls=true"
+      - "traefik.http.services.filebrowser.loadbalancer.server.port=8080"
+      - homepage.group=Cloud & Storage
+      - homepage.name=Filebrowser
+      - homepage.icon=filebrowser.svg
+      - homepage.href=http://${FILEBROWSER_URL}
+      - homepage.description=Simple cloud storage access
+
+networks:
+  traefik_proxy:
+    external: true
+    
