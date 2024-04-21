@@ -8,4 +8,7 @@ http:
           - main: "homeserver.internal"
             sans:
               - "*.homeserver.internal"
-              
+    adguard:
+      rule: "Host(`adguard.homeserver.internal`)"
+      service: "adguard@file"
+          

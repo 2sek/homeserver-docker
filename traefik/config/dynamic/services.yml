@@ -1,0 +1,6 @@
+http:
+  services:
+    adguard:
+      loadBalancer:
+        servers:
+        - url: http://pi.internal 

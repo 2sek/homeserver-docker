@@ -1,0 +1,17 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/settings
+
+title: Homeserver
+headerStyle: boxed
+layout:
+  Monitoring & Management:
+    style: row
+    columns: 2
+    
+showStats: true
+
+quicklaunch:
+    searchDescriptions: true
+    hideInternetSearch: true
+    hideVisitURL: false

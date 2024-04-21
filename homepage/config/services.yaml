@@ -1,0 +1,15 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/services
+
+- Monitoring & Management:
+  - AdguardHome:
+      icon: adguard-home.svg
+      href: {{HOMEPAGE_VAR_SERVICE_ADGUARD_URL}}
+      description: Adguard Home DNS
+      widget:
+        type: adguard
+        url: {{HOMEPAGE_VAR_SERVICE_ADGUARD_URL}}
+        username: {{HOMEPAGE_VAR_SERVICE_ADGUARD_LOGIN}}
+        password: {{HOMEPAGE_VAR_SERVICE_ADGUARD_PASSWORD}}
+  

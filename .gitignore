@@ -1,6 +1,6 @@
 *.env
 certs/
-homepage/config/
+logs/
 *.log
 *.db
 

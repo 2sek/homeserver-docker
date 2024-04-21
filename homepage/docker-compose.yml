@@ -33,6 +33,8 @@ services:
     restart: always
     networks:
       - traefik_proxy
+    env_file:
+      - ./.env
 
 networks:
   traefik_proxy:

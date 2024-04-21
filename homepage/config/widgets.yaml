@@ -1,0 +1,39 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/widgets
+
+- logo:
+    icon: mdi-home-circle-outline
+
+- resources:
+    label: System
+    cpu: true
+    memory: true
+    disk: /
+
+- resources:
+    label: Data
+    disk: /mnt/data
+
+- resources:
+    label: Media
+    disk: /mnt/media
+
+- search:
+    provider: duckduckgo
+    target: _blank
+
+- datetime:
+    locale: de
+    text_size: x2
+    format:
+      dateStyle: short
+      timeStyle: short
+      
+- openmeteo:
+    label: {{HOMEPAGE_VAR_WIDGET_WEATHER_LABEL}}
+    latitude: {{HOMEPAGE_VAR_WIDGET_WEATHER_LATITUDE}}
+    longitude: {{HOMEPAGE_VAR_WIDGET_WEATHER_LONGITUDE}}
+    units: metric
+    cache: 10
+    
