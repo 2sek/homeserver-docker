@@ -16,9 +16,9 @@ Traefik is thi single required service in this setup. You need to either follow 
 2. Each service has its own environment variables defined in a `.env` file in the same directory as the `docker-compose.yml`. These may create secrets so you need to create these yourself, tailored to your configuration.
 
     > :warning: Take special note of the Traefik and Homepage configuration files!
-    
+
 3. Tailor the configurations and docker-compose files to your needs.
-4. Start your services separately with the command `docker compose up -d` or, currently only on Linux, use `./restart.sh`.
+4. Start your services separately with the command `docker compose up -d` or, use either `./restart.sh` or `./restart.ps1`.
 5. With the default configuration, the server is now running on https://homeserver.internal.
 
 ## FAQ
