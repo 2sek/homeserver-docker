@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   kavita:
     image: lscr.io/linuxserver/kavita:0.8.0

@@ -19,7 +19,7 @@ Traefik is thi single required service in this setup. You need to either follow 
 
 3. Tailor the configurations and docker-compose files to your needs.
 4. Start your services separately with the command `docker compose up -d` or, use either `./restart.sh` or `./restart.ps1`.
-5. With the default configuration, the server is now running on https://homeserver.internal.
+5. With the default configuration, the server is now running on https://homeserver.internal. Each service runs on thr host `containerName.homeserver.internal`.
 
 ## FAQ
 
