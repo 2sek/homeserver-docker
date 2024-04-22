@@ -14,7 +14,9 @@ Traefik is thi single required service in this setup. You need to either follow 
 
 1. Generate your self-signed certificates (with your own CA or otherwise) and store the **domain** certificate and key in `traefik/certs/` *or* disable SSL (entrypoint web) and TLS (tls=false) in Traefik for each service.
 2. Each service has its own environment variables defined in a `.env` file in the same directory as the `docker-compose.yml`. These may create secrets so you need to create these yourself, tailored to your configuration.
+
     > :warning: Take special note of the Traefik and Homepage configuration files!
+    
 3. Tailor the configurations and docker-compose files to your needs.
 4. Start your services separately with the command `docker compose up -d` or, currently only on Linux, use `./restart.sh`.
 5. With the default configuration, the server is now running on https://homeserver.internal.
