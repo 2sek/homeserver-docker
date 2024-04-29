@@ -1,6 +1,6 @@
 services:
   kavita:
-    image: lscr.io/linuxserver/kavita:0.8.0
+    image: lscr.io/linuxserver/kavita:0.8.1
     container_name: kavita
     restart: unless-stopped
     networks:
