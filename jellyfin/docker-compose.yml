@@ -1,13 +1,13 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:latest
+    image: jellyfin/jellyfin:10.9.3
     container_name: jellyfin
     # network_mode: host  # DLNA
     restart: unless-stopped
     user: 1000:1000
     networks:
       - traefik_proxy
-    runtime: nvidia
+    # runtime: nvidia
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -15,8 +15,8 @@ services:
       - /var/docker/jellyfin/cache:/cache
       - ${MEDIA_PATH}:/data:ro
       - ${MEDIA2_PATH}:/external:ro
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+    # environment:
+    #   - NVIDIA_VISIBLE_DEVICES=all
     ports:
       - 8096:8096
       - 8920:8920
