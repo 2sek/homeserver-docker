@@ -4,5 +4,5 @@
     "config:base"
   ],
   "versioning": "docker",
-  "schedule": ["* 0 * * *"]
+  "schedule": ["on tuesday and thursday"]
 }
