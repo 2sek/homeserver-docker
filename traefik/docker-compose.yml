@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: traefik:v2.11.6
+    image: traefik:v2.11.7
     container_name: traefik
     restart: always
     networks:
