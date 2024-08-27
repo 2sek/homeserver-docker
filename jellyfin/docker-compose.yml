@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:10.9.9
+    image: jellyfin/jellyfin:10.9.10
     container_name: jellyfin
     # network_mode: host  # DLNA
     restart: unless-stopped
