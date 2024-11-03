@@ -1,8 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "versioning": "docker",
-  "schedule": ["on tuesday and thursday"]
+  "schedule": [
+    "on tuesday and thursday"
+  ]
 }
