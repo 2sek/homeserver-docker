@@ -34,6 +34,7 @@ services:
       - "traefik.http.routers.paperless.rule=Host(`${PAPERLESS_URL}`)"
       - "traefik.http.routers.paperless.tls=false"
       - "traefik.http.services.paperless.loadbalancer.server.port=8000"
+      - "traefik.docker.network=traefik_proxy"
       - homepage.group=Cloud & Storage
       - homepage.name=Paperless
       - homepage.icon=paperless.svg

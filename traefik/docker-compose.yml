@@ -15,6 +15,7 @@ services:
       - ./config:/etc/traefik/
       - ./certs:/etc/certs:ro
     labels:
+      - "traefik.enable=true"
       - homepage.group=Monitoring & Management
       - homepage.name=Traefik
       - homepage.icon=traefik.svg
