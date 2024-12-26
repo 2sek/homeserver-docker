@@ -5,9 +5,13 @@ services:
     # network_mode: host  # DLNA
     restart: unless-stopped
     user: 1000:1000
+    # HW acceleration
+    devices:   
+      - /dev/dri/renderD128:/dev/dri/renderD128 # ls /dev/dri
+    group_add:
+      - "104" # getent group render | cut -d: -f3
     networks:
       - traefik_proxy
-    # runtime: nvidia
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -15,8 +19,6 @@ services:
       - /var/docker/jellyfin/cache:/cache
       - ${MEDIA_PATH}:/data:ro
       - ${MEDIA2_PATH}:/external:ro
-    # environment:
-    #   - NVIDIA_VISIBLE_DEVICES=all
     ports:
       - 8096:8096
       - 8920:8920
