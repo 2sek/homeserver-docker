@@ -7,7 +7,7 @@ api:
 
 providers:
   docker:
-    endpoint: "unix:///var/run/docker.sock"
+    endpoint: "tcp://dockerproxy_traefik:2375"
     watch: true
     exposedByDefault: false
     network: traefik_proxy

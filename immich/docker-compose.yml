@@ -6,8 +6,9 @@ services:
     #   file: hwaccel.transcoding.yml
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${EXTERNAL_LOCATION}:/external
     networks:
       - traefik_proxy
       - immich
@@ -24,10 +25,9 @@ services:
       disable: false
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.immich.tls=true"
       - "traefik.http.routers.immich.entrypoints=websecure"
       - "traefik.http.routers.immich.rule=(Host(`${IMMICH_URL}`))"
-      - "traefik.http.routers.immich.tls=true"
-      - "traefik.http.routers.immich.tls.certresolver=http_resolver"
       - "traefik.http.services.immich.loadbalancer.server.port=2283"
       - "traefik.docker.network=traefik_proxy"
       - homepage.group=Cloud & Storage
