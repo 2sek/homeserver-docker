@@ -21,6 +21,14 @@ Traefik is thi single required service in this setup. You need to either follow 
 4. Start your services separately with the command `docker compose up -d` or, use either `./restart.sh` or `./restart.ps1`.
 5. With the default configuration, the server is now running on https://homeserver.internal. Each service runs on thr host `containerName.homeserver.internal`.
 
+
+## Service-specific Configuration
+
+### Uptime-Kuma
+When setting up a Docker host, you have to link to the docker proxy container.
+![grafik](https://github.com/user-attachments/assets/8562908c-7933-4c26-91a2-ad6f8541e8e2)
+
+
 ## FAQ
 
 - Why `.internal`?
