@@ -20,7 +20,7 @@ services:
       - homepage.group=Cloud & Storage
       - homepage.name=Filebrowser
       - homepage.icon=filebrowser.svg
-      - homepage.href=http://${FILEBROWSER_URL}
+      - homepage.href=https://${FILEBROWSER_URL}
       - homepage.description=Simple cloud storage access
 
 networks:

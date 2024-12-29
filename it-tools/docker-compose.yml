@@ -1,0 +1,25 @@
+services:
+  it-tools:
+    image: corentinth/it-tools:latest
+    container_name: it_tools  
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+    environment:
+      - UID=1000
+      - GID=1000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ittools.entrypoints=websecure"
+      - "traefik.http.routers.ittools.tls=true"
+      - "traefik.http.services.ittools.loadbalancer.server.port=80"
+      - "traefik.http.routers.ittools.rule=Host(`${IT_TOOLS_URL}`)"
+      - homepage.group=Tools
+      - homepage.name=IT-Tools
+      - homepage.icon=it-tools.svg
+      - homepage.href=https://${IT_TOOLS_URL}
+      - homepage.description=Handy tools for IT tasks
+networks:
+  traefik_proxy:
+    external: true
+    
