@@ -1,0 +1,32 @@
+services:
+  navidrome:
+    image: deluan/navidrome:0.54.3
+    container_name: navidrome
+    user: 1000:1000
+    ports:
+      - 4533:4533
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+    environment:
+      ND_SCANSCHEDULE: 1h
+      ND_ENABLEEXTERNALSERVICES: false
+      ND_ADDRESS: 0.0.0.0
+    volumes:
+      - "/var/docker/navidrome:/data"
+      - "${MUSIC_DIR}:/music:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.navidrome.loadbalancer.server.port=4533"
+      - "traefik.http.routers.navidrome.entrypoints=websecure"
+      - "traefik.http.routers.navidrome.tls=true"
+      - "traefik.http.routers.navidrome.rule=Host(`${NAVIDROME_URL}`)"
+      - homepage.group=Media Management
+      - homepage.name=Navidrome
+      - homepage.icon=navidrome.svg
+      - homepage.href=https://${NAVIDROME_URL}
+      - homepage.description=Music library management
+
+networks:
+  traefik_proxy:
+    external: true
