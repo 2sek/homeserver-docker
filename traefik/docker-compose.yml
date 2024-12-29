@@ -29,6 +29,8 @@ services:
       - ./certs:/etc/certs:ro
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
       - homepage.group=Monitoring & Management
       - homepage.name=Traefik
       - homepage.icon=traefik.svg
