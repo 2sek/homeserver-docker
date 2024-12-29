@@ -24,9 +24,21 @@ Traefik is thi single required service in this setup. You need to either follow 
 
 ## Service-specific Configuration
 
+### Traefik
+The static confiuration `config/traefik.yml` contains a default host rule if none is defined by the service. You can change or delete this configuration as you like.
+
+```yaml
+providers:
+  docker:
+    defaultRule: Host(`{{ normalize .ContainerName }}.homeserver.internal`)
+```
+
 ### Uptime-Kuma
 When setting up a Docker host, you have to link to the docker proxy container.
-![grafik](https://github.com/user-attachments/assets/8562908c-7933-4c26-91a2-ad6f8541e8e2)
+
+`Connection Type: TCP/HTTP`  
+`Docker Deamon: tcp://dockerproxy_kuma:2375`
+
 
 
 ## FAQ
