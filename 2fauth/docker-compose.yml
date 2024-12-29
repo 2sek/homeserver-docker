@@ -1,0 +1,27 @@
+services:
+  2fauth:
+    image: 2fauth/2fauth:5.4.3
+    container_name: 2fauth
+    user: 1000:1000
+    volumes:
+      - /var/docker/2fauth:/2fauth
+    networks:
+      - traefik_proxy
+    environment:
+      APP_NAME: 2FAuth
+      APP_URL: https://${FAUTH_URL}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.2fauth.loadbalancer.server.port=8000"
+      - "traefik.http.routers.2fauth.entrypoints=websecure"
+      - "traefik.http.routers.2fauth.tls=true"
+      - "traefik.http.routers.2fauth.rule=Host(`${FAUTH_URL}`)"
+      - homepage.group=Tools
+      - homepage.name=2FAuth
+      - homepage.icon=2fauth.svg
+      - homepage.href=https://${FAUTH_URL}
+      - homepage.description=Two-Factor Authentication account manager
+
+networks:
+  traefik_proxy:
+    external: true

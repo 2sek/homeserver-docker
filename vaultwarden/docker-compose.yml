@@ -1,0 +1,23 @@
+services:
+  vaultwarden:
+    image: ghcr.io/dani-garcia/vaultwarden:1.32.7-alpine
+    container_name: vaultwarden
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+    volumes:
+      - /var/docker/vaultwarden:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
+      - "traefik.http.routers.vaultwarden.entrypoints=websecure"
+      - "traefik.http.routers.vaultwarden.tls=true"
+      - homepage.group=Tools
+      - homepage.name=Vaultwarden
+      - homepage.icon=vaultwarden.svg
+      - homepage.href=https://${VAULTWARDEN_URL}
+      - homepage.description=Lightweight password manager
+
+networks:
+  traefik_proxy:
+    external: true
