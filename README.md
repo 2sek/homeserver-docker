@@ -3,6 +3,9 @@
 This is my current private homeserver setup, deployed with docker compose on a Linux server. 
 I decided to share this project as an example for a simple reverse proxy setup with TLS (self-signed certificates) in a local home network.
 
+![Homeserver-Dashboard](https://github.com/user-attachments/assets/bd093db8-78b9-4c46-a1b4-028b733e4865)
+
+
 ## Prerequisites
 
 - Docker with docker compose
