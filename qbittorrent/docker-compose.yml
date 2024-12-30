@@ -20,14 +20,15 @@ services:
       - 6881:6881/udp
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.qbittorrent.entrypoints=web"
+      - "traefik.http.routers.qbittorrent.tls=true"
+      - "traefik.http.routers.qbittorrent.entrypoints=websecure"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
       - "traefik.http.services.qbittorrent.loadbalancer.passhostheader=false"
       - "traefik.docker.network=traefik_proxy"
       - homepage.group=Media Management
       - homepage.name=qBittorrent
       - homepage.icon=qbittorrent.svg
-      - homepage.href=http://${QBITTORRENT_URL}
+      - homepage.href=https://${QBITTORRENT_URL}
       - homepage.description=Torrent management
 
 networks:
