@@ -19,6 +19,7 @@ services:
       - homepage.icon=it-tools.svg
       - homepage.href=https://${IT_TOOLS_URL}
       - homepage.description=Handy tools for IT tasks
+      - homepage.showStats=false
 networks:
   traefik_proxy:
     external: true

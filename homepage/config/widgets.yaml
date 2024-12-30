@@ -3,37 +3,40 @@
 # https://gethomepage.dev/en/configs/widgets
 
 - logo:
-    icon: mdi-home-circle-outline
+    icon: mdi-home
 
 - resources:
-    label: System
-    cpu: true
+    label: System 
     memory: true
+    cpu: true
+    cputemp: true
+    tempmin: 20
+    tempmax: 100
+    units: metric
+    uptime: true
     disk: /
-
+    
 - resources:
-    label: Data
-    disk: /mnt/data
+    label: Storage
+    disk:
+        - /mnt/data
+        - /mnt/media
 
-- resources:
-    label: Media
-    disk: /mnt/media
-
-- search:
-    provider: duckduckgo
-    target: _blank
+# - search:
+#     provider: duckduckgo
+#     target: _blank
+#     showSearchSuggestions: true
 
 - datetime:
     locale: de
-    text_size: x2
+    text_size: xl
     format:
-      dateStyle: short
       timeStyle: short
-      
+
 - openmeteo:
     label: {{HOMEPAGE_VAR_WIDGET_WEATHER_LABEL}}
     latitude: {{HOMEPAGE_VAR_WIDGET_WEATHER_LATITUDE}}
     longitude: {{HOMEPAGE_VAR_WIDGET_WEATHER_LONGITUDE}}
     units: metric
     cache: 10
-    
+  

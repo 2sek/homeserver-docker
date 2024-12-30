@@ -21,7 +21,7 @@ services:
       - "traefik.http.routers.navidrome.entrypoints=websecure"
       - "traefik.http.routers.navidrome.tls=true"
       - "traefik.http.routers.navidrome.rule=Host(`${NAVIDROME_URL}`)"
-      - homepage.group=Media Management
+      - homepage.group=Media & Streaming
       - homepage.name=Navidrome
       - homepage.icon=navidrome.svg
       - homepage.href=https://${NAVIDROME_URL}

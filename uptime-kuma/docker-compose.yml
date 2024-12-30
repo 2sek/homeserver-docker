@@ -20,6 +20,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     restart: unless-stopped
+    networks:
+      - traefik_proxy
+      - default
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kuma.entrypoints=websecure"
@@ -30,9 +33,10 @@ services:
       - homepage.icon=uptime-kuma.svg
       - homepage.href=https://${KUMA_URL}
       - homepage.description=Service uptime monitoring
-    networks:
-      - traefik_proxy
-      - default
+      - homepage.showStats=false
+      - homepage.widget.type=uptimekuma
+      - homepage.widget.url=https://${KUMA_URL}
+      - homepage.widget.slug=${KUMA_SLUG}
 
 networks:
   traefik_proxy:

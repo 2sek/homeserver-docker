@@ -6,6 +6,7 @@
   - AdguardHome:
       icon: adguard-home.svg
       href: {{HOMEPAGE_VAR_SERVICE_ADGUARD_URL}}
+      siteMonitor: {{HOMEPAGE_VAR_SERVICE_ADGUARD_URL}}
       description: Adguard Home DNS
       widget:
         type: adguard

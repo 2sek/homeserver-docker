@@ -3,13 +3,23 @@
 # https://gethomepage.dev/en/configs/settings
 
 title: Homeserver
-headerStyle: boxed
+headerStyle: clean
+statusStyle: 'dot'
+showStats: true
+
 layout:
   Monitoring & Management:
     style: row
     columns: 2
-    
-showStats: true
+  Tools:
+    style: row
+    columns: 3
+  Account Management:
+    style: row
+    columns: 3
+  Cloud & Storage:
+  Media & Streaming:
+  Download:
 
 quicklaunch:
     searchDescriptions: true

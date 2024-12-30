@@ -12,11 +12,12 @@ services:
       - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
       - "traefik.http.routers.vaultwarden.entrypoints=websecure"
       - "traefik.http.routers.vaultwarden.tls=true"
-      - homepage.group=Tools
+      - homepage.group=Account Management
       - homepage.name=Vaultwarden
       - homepage.icon=vaultwarden.svg
       - homepage.href=https://${VAULTWARDEN_URL}
       - homepage.description=Lightweight password manager
+      - homepage.showStats=false
 
 networks:
   traefik_proxy:

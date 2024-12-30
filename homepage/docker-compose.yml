@@ -13,6 +13,16 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:v0.10.4
     container_name: homepage
+    restart: always
+    networks:
+      - traefik_proxy
+      - default
+    environment:
+      LOG_TARGETS: stdout
+    env_file:
+      - ./.env
+    depends_on:
+      - dockerproxy
     volumes:
       - ./config:/app/config
       - /etc/localtime:/etc/localtime:ro
@@ -24,14 +34,6 @@ services:
       - "traefik.http.routers.homepage.rule=Host(`${HOMEPAGE_URL}`)"
       - "traefik.http.routers.homepage.entrypoints=websecure"
       - "traefik.http.routers.homepage.tls=true"
-    restart: always
-    networks:
-      - traefik_proxy
-      - default
-    env_file:
-      - ./.env
-    depends_on:
-      - dockerproxy
 
 networks:
   traefik_proxy:
