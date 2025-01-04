@@ -9,6 +9,7 @@ I decided to share this project as an example for a simple reverse proxy setup w
 ## Prerequisites
 
 - Docker with docker compose
+- Some Docker knowledge
 
 
 ## Quick Start
@@ -22,6 +23,7 @@ Traefik is thi single required service in this setup. You need to either follow 
 
 3. Tailor the configurations and docker-compose files to your needs.
 4. Start your services separately with the command `docker compose up -d` or, use either `./restart.sh` or `./restart.ps1`.
+    > :warning: Some applications may setup their startup configuration as *root*. It might be required to manually set ownership of these files to your user after the first service start in the config dir (default */var/docker/applicationName*).
 5. With the default configuration, the server is now running on https://homeserver.internal. Each service runs on thr host `containerName.homeserver.internal`.
 
 
@@ -42,7 +44,31 @@ When setting up a Docker host, you have to link to the docker proxy container.
 `Connection Type: TCP/HTTP`  
 `Docker Deamon: tcp://dockerproxy_kuma:2375`
 
+### ArchiSteamFarm (ASF)
 
+To be able to actually connect to ASF-ui, we need to configure ASF's IPC not to listen only on localhost. In addition to the pre-configured `docker-compose.yml`, creathe a file named `IPC.config` with the following content and put in in your ASF config dir (/var/docker/archisteamfarm/config):
+
+```yaml
+{
+	"Kestrel": {
+		"Endpoints": {
+			"http4": {
+				"Url": "http://*:1242"
+			}
+		},
+		"KnownNetworks": [
+			"10.0.0.0/8",
+			"172.16.0.0/12",
+			"192.168.0.0/16"
+		],
+		"PathBase": "/"
+	}
+}
+```
+As ASF is practically running in headless mode (on a server without user interaction), you may need to input a Steam Guard Code during the login: 
+```md
+input <BotName> TwoFactorAuthentication <Steam Guard Code>
+```
 
 ## FAQ
 
