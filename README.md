@@ -46,9 +46,9 @@ When setting up a Docker host, you have to link to the docker proxy container.
 
 ### ArchiSteamFarm (ASF)
 
-To be able to actually connect to ASF-ui, we need to configure ASF's IPC not to listen only on localhost. In addition to the pre-configured `docker-compose.yml`, creathe a file named `IPC.config` with the following content and put in in your ASF config dir (/var/docker/archisteamfarm/config):
+To be able to actually connect to ASF-ui, we need to configure ASF's IPC not to listen only on localhost. In addition to the pre-configured `docker-compose.yml`, create a file named `IPC.config` with the following content (taken from the [official ASF wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/IPC#custom-configuratio)) and put in in your ASF config dir (/var/docker/archisteamfarm/config):
 
-```yaml
+```json
 {
 	"Kestrel": {
 		"Endpoints": {
@@ -67,7 +67,7 @@ To be able to actually connect to ASF-ui, we need to configure ASF's IPC not to 
 ```
 As ASF is practically running in headless mode (on a server without user interaction), you may need to input a Steam Guard Code during the login: 
 ```md
-input <BotName> TwoFactorAuthentication <Steam Guard Code>
+input <BotName> TwoFactorAuthentication <SteamGuardCode>
 ```
 
 ## FAQ
@@ -79,6 +79,6 @@ input <BotName> TwoFactorAuthentication <Steam Guard Code>
 
 ## Troubleshooting
 
-- Permission denied error on config files (local or ``/var/docker``) 
+- Permission denied error on config files (local or `/var/docker`) 
 
     :arrow_forward: Check if your user has write permissions.
