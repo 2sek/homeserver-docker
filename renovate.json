@@ -5,6 +5,6 @@
   ],
   "versioning": "docker",
   "schedule": [
-    "on tuesday and thursday"
+    "on monday and thursday"
   ]
 }
