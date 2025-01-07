@@ -3,6 +3,7 @@ services:
     image: 2fauth/2fauth:5.4.3
     container_name: 2fauth
     user: 1000:1000
+    restart: unless-stopped
     volumes:
       - /var/docker/2fauth:/2fauth
     networks:

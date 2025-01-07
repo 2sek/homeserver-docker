@@ -20,6 +20,9 @@ layout:
   Cloud & Storage:
   Media & Streaming:
   Download:
+  Games & Game Tools:
+    style: row
+    columns: 3
 
 quicklaunch:
     searchDescriptions: true
