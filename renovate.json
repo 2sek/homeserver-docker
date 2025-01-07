@@ -4,7 +4,6 @@
     "config:recommended"
   ],
   "versioning": "docker",
-  "schedule": [
-    "on monday and thursday"
-  ]
+  "schedule": ["on monday and thursday"],
+  "reviewers": ["2sek"]
 }
