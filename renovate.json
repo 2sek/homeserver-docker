@@ -5,5 +5,16 @@
   ],
   "versioning": "docker",
   "schedule": ["on monday and thursday"],
-  "reviewers": ["2sek"]
+  "reviewers": ["2sek"],
+  "packageRules": [
+    {
+      "groupName": "immich",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/immich-app/**"
+      ]
+    }
+  ]
 }
