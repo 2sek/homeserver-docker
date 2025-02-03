@@ -15,6 +15,11 @@
       "matchPackageNames": [
         "ghcr.io/immich-app/**"
       ]
+    },
+    {
+      "matchPackageNames": ["hurlenko/filebrowser"],
+      "matchDatasources": ["docker"],
+      "changelogUrl": "https://github.com/filebrowser/filebrowser"
     }
   ]
 }
