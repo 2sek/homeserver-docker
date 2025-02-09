@@ -11,6 +11,7 @@ services:
     environment:
       APP_NAME: 2FAuth
       APP_URL: https://${FAUTH_URL}
+      WEBAUTHN_ID: ${FAUTH_URL}
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.2fauth.loadbalancer.server.port=8000"
