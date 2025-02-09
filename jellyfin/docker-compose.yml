@@ -18,7 +18,8 @@ services:
       - /var/docker/jellyfin/config:/config
       - /var/docker/jellyfin/cache:/cache
       - ${MEDIA_PATH}:/data:ro
-      - ${MEDIA2_PATH}:/external:ro
+      - /srv/media:/external:ro
+      - /srv/media2:/external2:ro
     ports:
       - 8096:8096
       - 8920:8920
