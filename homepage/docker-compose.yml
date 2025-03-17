@@ -19,6 +19,7 @@ services:
       - default
     environment:
       LOG_TARGETS: stdout
+      HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_URL}
     env_file:
       - ./.env
     depends_on:
