@@ -15,9 +15,10 @@ services:
       - PGID=1000
       - UMASK=002
       - WEBUI_PORT=8080
+      - TORRENTING_PORT=${QBITTORRENT_PORT}
     ports:
-      - 6881:6881
-      - 6881:6881/udp
+      - ${QBITTORRENT_PORT}:${QBITTORRENT_PORT}
+      - ${QBITTORRENT_PORT}:${QBITTORRENT_PORT}/udp
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.qbittorrent.tls=true"
