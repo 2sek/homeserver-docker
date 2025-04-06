@@ -29,21 +29,6 @@ Traefik is thi single required service in this setup. You need to either follow 
 
 ## Service-specific Configuration
 
-### Traefik
-The static confiuration `config/traefik.yml` contains a default host rule if none is defined by the service. You can change or delete this configuration as you like.
-
-```yaml
-providers:
-  docker:
-    defaultRule: Host(`{{ normalize .ContainerName }}.homeserver.internal`)
-```
-
-### Uptime-Kuma
-When setting up a Docker host, you have to link to the docker proxy container.
-
-`Connection Type: TCP/HTTP`  
-`Docker Deamon: tcp://dockerproxy_kuma:2375`
-
 ### ArchiSteamFarm (ASF)
 
 To be able to actually connect to ASF-ui, we need to configure ASF's IPC not to listen only on localhost. In addition to the pre-configured `docker-compose.yml`, create a file named `IPC.config` with the following content (taken from the [official ASF wiki](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/IPC#custom-configuratio)) and put in in your ASF config dir (/var/docker/archisteamfarm/config):
@@ -69,6 +54,31 @@ As ASF is practically running in headless mode (on a server without user interac
 ```md
 input <BotName> TwoFactorAuthentication <SteamGuardCode>
 ```
+
+### Jellyfin
+Since version 10.10.7 you **have** to configure known proxies under `Networking`, otherwise you cannot connect to Jellfin via the configured Traefik host.
+You can find the IP adress of Traefik per `docker inspect traefik` and then paste the address from *NetworkSettings.Networks.IPAddress* to 'known proxies' in the Jellyfin networking configuration.
+It is also possible to use CIDR notation, for example `127.0.0.1/24, 172.18.0.1/24`.
+
+> :warning: Make sure that '*Allow remote connections to this server*' under 'Remote Access Settings' is disabled.
+
+
+### Traefik
+The static confiuration `config/traefik.yml` contains a default host rule if none is defined by the service. You can change or delete this configuration as you like.
+
+```yaml
+providers:
+  docker:
+    defaultRule: Host(`{{ normalize .ContainerName }}.homeserver.internal`)
+```
+
+
+### Uptime-Kuma
+When setting up a Docker host, you have to link to the docker proxy container.
+
+`Connection Type: TCP/HTTP`  
+`Docker Deamon: tcp://dockerproxy_kuma:2375`
+
 
 ## FAQ
 
