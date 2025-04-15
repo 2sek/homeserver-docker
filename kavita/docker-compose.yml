@@ -8,7 +8,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
