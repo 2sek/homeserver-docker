@@ -17,7 +17,7 @@ I decided to share this project as an example for a simple reverse proxy setup w
 Traefik is thi single required service in this setup. You need to either follow the existing configuration or change it to match your desired results.
 
 1. Generate your self-signed certificates (with your own CA or otherwise) and store the **domain** certificate and key in `traefik/certs/` *or* disable SSL (entrypoint web) and TLS (tls=false) in Traefik for each service.
-2. Each service has its own environment variables defined in a `.env` file in the same directory as the `docker-compose.yml`. These may create secrets so you need to create these yourself, tailored to your configuration.
+2. Each service has its own environment variables defined in a `.env` file in the same directory as the `docker-compose.yml`. These may create secrets so you need to tailor these (use `.env.example` files for var declarations) files to your specific configuration.
 
     > :warning: Take special note of the Traefik and Homepage configuration files!
 
