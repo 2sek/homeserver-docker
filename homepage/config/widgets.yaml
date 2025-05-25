@@ -40,4 +40,4 @@
     longitude: {{HOMEPAGE_VAR_WIDGET_WEATHER_LONGITUDE}}
     units: metric
     cache: 10
-  
+    

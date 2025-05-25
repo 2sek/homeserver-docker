@@ -2,7 +2,7 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/en/configs/services
 
-- Monitoring & Management:
+- DNS & Router:
   - AdguardHome:
       icon: adguard-home.svg
       href: {{HOMEPAGE_VAR_SERVICE_ADGUARD_URL}}

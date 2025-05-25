@@ -28,7 +28,7 @@ services:
       - "traefik.http.routers.dozzle.entrypoints=websecure"
       - "traefik.http.routers.dozzle.tls=true"
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
-      - homepage.group=Monitoring & Management
+      - homepage.group=Monitoring
       - homepage.name=Dozzle
       - homepage.icon=dozzle.svg
       - homepage.href=https://${DOZZLE_URL}

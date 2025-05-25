@@ -8,7 +8,10 @@ statusStyle: 'dot'
 showStats: true
 
 layout:
-  Monitoring & Management:
+  DNS & Router:
+    style: row
+    columns: 2
+  Monitoring:
     style: row
     columns: 2
   Tools:
