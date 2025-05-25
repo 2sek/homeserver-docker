@@ -27,6 +27,7 @@ services:
       - homepage.widget.username=${HOMEPAGE_VAR_SERVICE_BESZEL_LOGIN}
       - homepage.widget.password=${HOMEPAGE_VAR_SERVICE_BESZEL_PASSWORD}
       - homepage.widget.systemId=${HOMEPAGE_VAR_SERVICE_BESZEL_SYSTEM}
+      - homepage.widget.fields=["status", "cpu", "memory", "network"]
       - homepage.widget.version=2
       - homepage.showStats=false
 
