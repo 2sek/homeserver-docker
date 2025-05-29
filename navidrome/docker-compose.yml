@@ -1,6 +1,6 @@
 services:
   navidrome:
-    image: deluan/navidrome:0.55.2
+    image: deluan/navidrome:0.56.0
     container_name: navidrome
     user: 1000:1000
     ports:
