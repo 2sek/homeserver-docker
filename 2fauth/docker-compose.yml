@@ -13,17 +13,17 @@ services:
       APP_URL: https://${FAUTH_URL}
       WEBAUTHN_ID: ${FAUTH_URL}
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.2fauth.loadbalancer.server.port=8000"
-      - "traefik.http.routers.2fauth.entrypoints=websecure"
-      - "traefik.http.routers.2fauth.tls=true"
-      - "traefik.http.routers.2fauth.rule=Host(`${FAUTH_URL}`)"
-      - homepage.group=Account Management
-      - homepage.name=2FAuth
-      - homepage.icon=2fauth.svg
-      - homepage.href=https://${FAUTH_URL}
-      - homepage.description=Two-Factor Authentication account manager
-      - homepage.showStats=false
+      traefik.enable: true
+      traefik.http.services.2fauth.loadbalancer.server.port: 8000
+      traefik.http.routers.2fauth.entrypoints: websecure
+      traefik.http.routers.2fauth.tls: true
+      traefik.http.routers.2fauth.rule: Host(`${FAUTH_URL}`)
+      homepage.group: Account Management
+      homepage.name: 2FAuth
+      homepage.icon: 2fauth.svg
+      homepage.href: https://${FAUTH_URL}
+      homepage.description: Two-Factor Authentication account manager
+      homepage.showStats: false
 
 networks:
   traefik_proxy:

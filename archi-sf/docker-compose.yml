@@ -12,16 +12,16 @@ services:
     environment:
       ASF_CRYPTKEY: ${ASF_CRYPTKEY} # for storing an encrypted password
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.archiesteamfarm.entrypoints=websecure"
-      - "traefik.http.routers.archiesteamfarm.tls=true"
-      - "traefik.http.routers.archiesteamfarm.rule=Host(`${ARCHISTEAMFARM_URL}`)"
-      - "traefik.http.services.archiesteamfarm.loadbalancer.server.port=1242"
-      - homepage.group=Games & Game Tools
-      - homepage.name=ArchiSteamFarm
-      - homepage.icon=https://raw.githubusercontent.com/JustArchiNET/ArchiSteamFarm/main/resources/ASF_184x184.png
-      - homepage.href=https://${ARCHISTEAMFARM_URL}
-      - homepage.description=Archi's power tools for Steam
+      traefik.enable: true
+      traefik.http.routers.archiesteamfarm.entrypoints: websecure
+      traefik.http.routers.archiesteamfarm.tls: true
+      traefik.http.routers.archiesteamfarm.rule: Host(`${ARCHISTEAMFARM_URL}`)
+      traefik.http.services.archiesteamfarm.loadbalancer.server.port: 1242
+      homepage.group: Games & Game Tools
+      homepage.name: ArchiSteamFarm
+      homepage.icon: https://raw.githubusercontent.com/JustArchiNET/ArchiSteamFarm/main/resources/ASF_184x184.png
+      homepage.href: https://${ARCHISTEAMFARM_URL}
+      homepage.description: Archi's power tools for Steam
 
 networks:
   traefik_proxy:

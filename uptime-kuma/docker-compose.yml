@@ -3,7 +3,7 @@ services:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
     container_name: dockerproxy_kuma
     environment:
-        - CONTAINERS=1 # Allow access to viewing containers
+        CONTAINERS: 1 # Allow access to viewing containers
     networks:
       - default
     volumes:
@@ -24,19 +24,19 @@ services:
       - traefik_proxy
       - default
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.kuma.entrypoints=websecure"
-      - "traefik.http.routers.kuma.tls=true"
-      - "traefik.http.services.kuma.loadbalancer.server.port=3001"
-      - homepage.group=Monitoring
-      - homepage.name=Uptime Kuma
-      - homepage.icon=uptime-kuma.svg
-      - homepage.href=https://${KUMA_URL}
-      - homepage.description=Service uptime monitoring
-      - homepage.showStats=false
-      - homepage.widget.type=uptimekuma
-      - homepage.widget.url=https://${KUMA_URL}
-      - homepage.widget.slug=${KUMA_SLUG}
+      traefik.enable: true
+      traefik.http.routers.kuma.entrypoints: websecure
+      traefik.http.routers.kuma.tls: true
+      traefik.http.services.kuma.loadbalancer.server.port: 3001
+      homepage.group: Monitoring
+      homepage.name: Uptime Kuma
+      homepage.icon: uptime-kuma.svg
+      homepage.href: https://${KUMA_URL}
+      homepage.description: Service uptime monitoring
+      homepage.showStats: false
+      homepage.widget.type: uptimekuma
+      homepage.widget.url: https://${KUMA_URL}
+      homepage.widget.slug: ${KUMA_SLUG}
 
 networks:
   traefik_proxy:

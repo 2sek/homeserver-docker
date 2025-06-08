@@ -3,7 +3,7 @@ services:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
     container_name: dockerproxy_homepage
     environment:
-        - CONTAINERS=1 # Allow access to viewing containers
+        CONTAINERS: 1 # Allow access to viewing containers
     networks:
       - default
     volumes:
@@ -32,10 +32,10 @@ services:
       - /srv/media:/mnt/media:ro
       - /srv/media2:/mnt/media2:ro
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.homepage.rule=Host(`${HOMEPAGE_URL}`)"
-      - "traefik.http.routers.homepage.entrypoints=websecure"
-      - "traefik.http.routers.homepage.tls=true"
+      traefik.enable: true
+      traefik.http.routers.homepage.rule: Host(`${HOMEPAGE_URL}`)
+      traefik.http.routers.homepage.entrypoints: websecure
+      traefik.http.routers.homepage.tls: true
 
 networks:
   traefik_proxy:

@@ -6,27 +6,27 @@ services:
     networks:
       - traefik_proxy
     environment:
-      - PUID=1000
-      - PGID=1000
+      PUID: 1000
+      PGID: 1000
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ${BOOKS}:/books:ro
       - /var/docker/kavita/config:/config
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.kavita.entrypoints=websecure"
-      - "traefik.http.routers.kavita.rule=Host(`${KAVITA_URL}`)"
-      - "traefik.http.routers.kavita.tls=true"
-      - "traefik.http.routers.kavitalib.entrypoints=web"
-      - "traefik.http.routers.kavitalib.rule=Host(`${KAVITA_URL}`)"
-      - "traefik.http.routers.kavitalib.tls=false"
-      - "traefik.http.services.kavita.loadbalancer.server.port=5000"
-      - homepage.group=Media & Streaming
-      - homepage.name=Kavita
-      - homepage.icon=kavita.svg
-      - homepage.href=https://${KAVITA_URL}
-      - homepage.description= Novel and manga manager
+      traefik.enable: true
+      traefik.http.routers.kavita.entrypoints: websecure
+      traefik.http.routers.kavita.rule: Host(`${KAVITA_URL}`)
+      traefik.http.routers.kavita.tls: true
+      traefik.http.routers.kavitalib.entrypoints: web
+      traefik.http.routers.kavitalib.rule: Host(`${KAVITA_URL}`)
+      traefik.http.routers.kavitalib.tls: false
+      traefik.http.services.kavita.loadbalancer.server.port: 5000
+      homepage.group: Media & Streaming
+      homepage.name: Kavita
+      homepage.icon: kavita.svg
+      homepage.href: https://${KAVITA_URL}
+      homepage.description: Novel and manga manager
 
 networks:
   traefik_proxy:

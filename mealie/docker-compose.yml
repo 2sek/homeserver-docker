@@ -14,19 +14,16 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
-    env_file:
-      - ./.env
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.mealie.loadbalancer.server.port=9000"
-      - "traefik.http.routers.mealie.entrypoints=websecure"
-      - "traefik.http.routers.mealie.tls=true"
-      - "traefik.http.routers.mealie.rule=Host(`${MEALIE_URL}`)"
-      - homepage.group=Cloud & Storage
-      - homepage.name=Mealie
-      - homepage.icon=mealie.svg
-      - homepage.href=https://${MEALIE_URL}
-      - homepage.description=Food recipe management
+      traefik.enable: true
+      traefik.http.services.mealie.loadbalancer.server.port: 9000
+      traefik.http.routers.mealie.entrypoints: websecure
+      traefik.http.routers.mealie.tls: true
+      homepage.group: Cloud & Storage
+      homepage.name: Mealie
+      homepage.icon: mealie.svg
+      homepage.href: https://${MEALIE_URL}
+      homepage.description: Food recipe management
 
 networks:
   traefik_proxy:

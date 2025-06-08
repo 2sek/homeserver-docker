@@ -3,7 +3,7 @@ services:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
     container_name: dockerproxy_traefik
     environment:
-        - CONTAINERS=1 # Allow access to viewing containers
+        CONTAINERS: 1 # Allow access to viewing containers
     networks:
       - default
     volumes:
@@ -28,14 +28,14 @@ services:
       - ./config:/etc/traefik/
       - ./certs:/etc/certs:ro
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.entrypoints=websecure"
-      - homepage.group=DNS & Router
-      - homepage.name=Traefik
-      - homepage.icon=traefik.svg
-      - homepage.href=https://${TRAEFIK_URL}
-      - homepage.description=Traefik proxy dashboard
+      traefik.enable: true
+      traefik.http.routers.traefik.tls: true
+      traefik.http.routers.traefik.entrypoints: websecure
+      homepage.group: DNS & Router
+      homepage.name: Traefik
+      homepage.icon: traefik.svg
+      homepage.href: https://${TRAEFIK_URL}
+      homepage.description: Traefik proxy dashboard
 
 networks:
   traefik_proxy:
