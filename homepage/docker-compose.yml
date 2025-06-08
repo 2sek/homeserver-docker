@@ -18,6 +18,8 @@ services:
       - traefik_proxy
       - default
     environment:
+      PUID: 1000
+      PGID: 1000
       LOG_TARGETS: stdout
       HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_URL}
     env_file:

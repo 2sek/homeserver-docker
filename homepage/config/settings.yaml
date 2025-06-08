@@ -13,11 +13,14 @@ layout:
     columns: 2
   Monitoring:
     style: row
-    columns: 2
+    columns: 3
   Tools:
     style: row
     columns: 3
   Account Management:
+    style: row
+    columns: 3
+  Finances & Wealth Management:
     style: row
     columns: 3
   Cloud & Storage:
