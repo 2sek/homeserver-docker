@@ -24,17 +24,17 @@ services:
     healthcheck:
       disable: false
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.immich.tls=true"
-      - "traefik.http.routers.immich.entrypoints=websecure"
-      - "traefik.http.routers.immich.rule=(Host(`${IMMICH_URL}`))"
-      - "traefik.http.services.immich.loadbalancer.server.port=2283"
-      - "traefik.docker.network=traefik_proxy"
-      - homepage.group=Cloud & Storage
-      - homepage.name=Immich
-      - homepage.icon=immich.svg
-      - homepage.href=https://${IMMICH_URL}
-      - homepage.description=Photo & video management
+      traefik.enable: true
+      traefik.http.routers.immich.tls: true
+      traefik.http.routers.immich.entrypoints: websecure
+      traefik.http.routers.immich.rule: Host(`${IMMICH_URL}`)
+      traefik.http.services.immich.loadbalancer.server.port: 2283
+      traefik.docker.network: traefik_proxy
+      homepage.group: Cloud & Storage
+      homepage.name: Immich
+      homepage.icon: immich.svg
+      homepage.href: https://${IMMICH_URL}
+      homepage.description: Photo & video management
 
   immich-machine-learning:
     container_name: immich_machine_learning

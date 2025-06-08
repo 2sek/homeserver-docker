@@ -9,18 +9,17 @@ services:
       - ${METUBE_DOWNLOADS}:/downloads
       - ${METUBE_COOKIES}:/cookies
     environment:
-      - YTDL_OPTIONS={"cookiefile":"/cookies/cookies.txt"}
+      YTDL_OPTIONS: '{cookiefile":"/cookies/cookies.txt"}'
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.metube.tls=true"
-      - "traefik.http.routers.metube.entrypoints=websecure"
-      - "traefik.http.routers.metube.rule=Host(`${METUBE_URL}`)"
-      - "traefik.http.services.metube.loadbalancer.server.port=8081"
-      - homepage.group=Download
-      - homepage.name=Metube
-      - homepage.icon=metube.svg
-      - homepage.href=https://${METUBE_URL}
-      - homepage.description=Web GUI for yt-dlp
+      traefik.enable: true
+      traefik.http.routers.metube.tls: true
+      traefik.http.routers.metube.entrypoints: websecure
+      traefik.http.services.metube.loadbalancer.server.port: 8081
+      homepage.group: Download
+      homepage.name: Metube
+      homepage.icon: metube.svg
+      homepage.href: https://${METUBE_URL}
+      homepage.description: Web GUI for yt-dlp
 
 networks:
   traefik_proxy:

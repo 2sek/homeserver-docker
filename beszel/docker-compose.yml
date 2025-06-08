@@ -13,31 +13,31 @@ services:
       PUID: 1000
       PGID: 1000
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.beszel.tls=true"
-      - "traefik.http.routers.beszel.entrypoints=websecure"
-      - "traefik.http.services.beszel.loadbalancer.server.port=8090"
-      - homepage.group=Monitoring
-      - homepage.name=Beszel
-      - homepage.icon=beszel.svg
-      - homepage.href=https://${BESZEL_URL}
-      - homepage.description=Lightweight service monitoring tool
-      - homepage.widget.type=beszel
-      - homepage.widget.url=https://${BESZEL_URL}
-      - homepage.widget.username=${HOMEPAGE_VAR_SERVICE_BESZEL_LOGIN}
-      - homepage.widget.password=${HOMEPAGE_VAR_SERVICE_BESZEL_PASSWORD}
-      - homepage.widget.systemId=${HOMEPAGE_VAR_SERVICE_BESZEL_SYSTEM}
-      - homepage.widget.fields=["status", "cpu", "memory", "network"]
-      - homepage.widget.version=2
-      - homepage.showStats=false
+      traefik.enable: true
+      traefik.http.routers.beszel.tls: true
+      traefik.http.routers.beszel.entrypoints: websecure
+      traefik.http.services.beszel.loadbalancer.server.port: 8090
+      homepage.group: Monitoring
+      homepage.name: Beszel
+      homepage.icon: beszel.svg
+      homepage.href: https://${BESZEL_URL}
+      homepage.description: Lightweight service monitoring tool
+      homepage.widget.type: beszel
+      homepage.widget.url: https://${BESZEL_URL}
+      homepage.widget.username: ${HOMEPAGE_VAR_SERVICE_BESZEL_LOGIN}
+      homepage.widget.password: ${HOMEPAGE_VAR_SERVICE_BESZEL_PASSWORD}
+      homepage.widget.systemId: ${HOMEPAGE_VAR_SERVICE_BESZEL_SYSTEM}
+      homepage.widget.fields: '["status", "cpu", "memory", "network"]'
+      homepage.widget.version: 2
+      homepage.showStats: false
 
   dockerproxy:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
     container_name: dockerproxy_beszel
     privileged: true
     environment:
-        - CONTAINERS=1 # Allow access to viewing containers
-        - INFO=1 # Allow access to system information
+        CONTAINERS: 1 # Allow access to viewing containers
+        INFO: 1 # Allow access to system information
     networks:
       - beszel
     volumes:

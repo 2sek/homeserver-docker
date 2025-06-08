@@ -26,15 +26,15 @@ services:
       - 7359:7359/udp
       - 1900:1900/udp
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.entrypoints=websecure"
-      - "traefik.http.routers.jellyfin.tls=true"
-      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
-      - homepage.group=Media & Streaming
-      - homepage.name=Jellyfin
-      - homepage.icon=jellyfin.svg
-      - homepage.href=https://${JELLYFIN_URL}
-      - homepage.description= Jellyfin media server
+      traefik.enable: true
+      traefik.http.routers.jellyfin.entrypoints: websecure
+      traefik.http.routers.jellyfin.tls: true
+      traefik.http.services.jellyfin.loadbalancer.server.port: 8096
+      homepage.group: Media & Streaming
+      homepage.name: Jellyfin
+      homepage.icon: jellyfin.svg
+      homepage.href: https://${JELLYFIN_URL}
+      homepage.description: Jellyfin media server
 
 networks:
   traefik_proxy:

@@ -11,26 +11,26 @@ services:
       - /var/docker/qbittorrent/config:/config
       - ${DOWNLOADS}:/data/downloads
     environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK=002
-      - WEBUI_PORT=8080
-      - TORRENTING_PORT=${QBITTORRENT_PORT}
+      PUID: 1000
+      PGID: 1000
+      UMASK: 002
+      WEBUI_PORT: 8080
+      TORRENTING_PORT: ${QBITTORRENT_PORT}
     ports:
       - ${QBITTORRENT_PORT}:${QBITTORRENT_PORT}
       - ${QBITTORRENT_PORT}:${QBITTORRENT_PORT}/udp
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.qbittorrent.tls=true"
-      - "traefik.http.routers.qbittorrent.entrypoints=websecure"
-      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
-      - "traefik.http.services.qbittorrent.loadbalancer.passhostheader=false"
-      - "traefik.docker.network=traefik_proxy"
-      - homepage.group=Download
-      - homepage.name=qBittorrent
-      - homepage.icon=qbittorrent.svg
-      - homepage.href=https://${QBITTORRENT_URL}
-      - homepage.description=Torrent management
+      traefik.enable: true
+      traefik.http.routers.qbittorrent.tls: true
+      traefik.http.routers.qbittorrent.entrypoints: websecure
+      traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
+      traefik.http.services.qbittorrent.loadbalancer.passhostheader: false
+      traefik.docker.network: traefik_proxy
+      homepage.group: Download
+      homepage.name: qBittorrent
+      homepage.icon: qbittorrent.svg
+      homepage.href: https://${QBITTORRENT_URL}
+      homepage.description: Torrent management
 
 networks:
   traefik_proxy:

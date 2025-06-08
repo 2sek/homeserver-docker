@@ -4,8 +4,8 @@ services:
     container_name: dockerproxy_dozzle
     privileged: true
     environment:
-        - CONTAINERS=1 # Allow access to viewing containers
-        - INFO=1 # Allow access to system information
+        CONTAINERS: 1 # Allow access to viewing containers
+        INFO: 1 # Allow access to system information
     networks:
       - default
     volumes:
@@ -24,15 +24,15 @@ services:
     environment:
       DOCKER_HOST: tcp://dockerproxy_dozzle:2375
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.dozzle.entrypoints=websecure"
-      - "traefik.http.routers.dozzle.tls=true"
-      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
-      - homepage.group=Monitoring
-      - homepage.name=Dozzle
-      - homepage.icon=dozzle.svg
-      - homepage.href=https://${DOZZLE_URL}
-      - homepage.description=Real-time logging for docker containers
+      traefik.enable: true
+      traefik.http.routers.dozzle.entrypoints: websecure
+      traefik.http.routers.dozzle.tls: true
+      traefik.http.services.dozzle.loadbalancer.server.port: 8080
+      homepage.group: Monitoring
+      homepage.name: Dozzle
+      homepage.icon: dozzle.svg
+      homepage.href: https://${DOZZLE_URL}
+      homepage.description: Real-time logging for docker containers
 
 networks:
   traefik_proxy:

@@ -8,21 +8,21 @@ services:
       - traefik_proxy
     volumes:
       - ${DATA_PATH}:/data/data
-      - /srv/media:/data/media
-      - /srv/media2:/data/media2
+      - ${EXTERNAL1}:/data/media
+      - ${EXTERNAL2}:/data/media2
       - ./config:/config
     environment:
-      - FB_BASEURL=/filebrowser
+      FB_BASEURL: "/filebrowser"
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.filebrowser.entrypoints=websecure"
-      - "traefik.http.routers.filebrowser.tls=true"
-      - "traefik.http.services.filebrowser.loadbalancer.server.port=8080"
-      - homepage.group=Cloud & Storage
-      - homepage.name=Filebrowser
-      - homepage.icon=filebrowser.svg
-      - homepage.href=https://${FILEBROWSER_URL}
-      - homepage.description=Simple cloud storage access
+      traefik.enable: true
+      traefik.http.routers.filebrowser.entrypoints: websecure
+      traefik.http.routers.filebrowser.tls: true
+      traefik.http.services.filebrowser.loadbalancer.server.port: 8080
+      homepage.group: Cloud & Storage
+      homepage.name: Filebrowser
+      homepage.icon: filebrowser.svg
+      homepage.href: https://${FILEBROWSER_URL}
+      homepage.description: Simple cloud storage access
 
 networks:
   traefik_proxy:
