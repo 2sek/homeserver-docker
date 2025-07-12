@@ -1,0 +1,29 @@
+services:
+  actualbudget:
+    image: ghcr.io/actualbudget/actual:25.6.1-alpine
+    container_name: actual-budget
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+      # See all options and more details at https://actualbudget.github.io/docs/Installing/Configuration
+      # - ACTUAL_HTTPS_KEY=/data/selfhost.key
+      # - ACTUAL_HTTPS_CERT=/data/selfhost.crt
+    volumes:
+      - ${ACTUAL_DATA}:/data
+    networks:
+      - traefik_proxy
+    labels:
+      traefik.enable: true
+      traefik.http.services.actualbudget.loadbalancer.server.port: 5006
+      traefik.http.routers.actualbudget.rule: Host(`${ACTUAL_URL}`)
+      traefik.http.routers.actualbudget.entrypoints: websecure
+      traefik.http.routers.actualbudget.tls: true
+      homepage.group: Finances & Wealth Management
+      homepage.name: Actual Budget
+      homepage.icon: actual-budget.svg
+      homepage.href: https://${ACTUAL_URL}
+
+networks:
+  traefik_proxy:
+    external: true
