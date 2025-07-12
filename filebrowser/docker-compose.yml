@@ -1,6 +1,6 @@
 services:
   filebrowser:
-    image: hurlenko/filebrowser:v2.37.0
+    image: hurlenko/filebrowser:v2.38.0
     container_name: filebrowser
     user: 1000:1000   
     restart: unless-stopped
@@ -10,7 +10,8 @@ services:
       - ${DATA_PATH}:/data/data
       - ${EXTERNAL1}:/data/media
       - ${EXTERNAL2}:/data/media2
-      - ./config:/config
+      - /var/docker/filebrowser:/config
+      - /var/docker/filebrowser:/database
     environment:
       FB_BASEURL: "/filebrowser"
     labels:
