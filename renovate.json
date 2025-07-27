@@ -39,6 +39,15 @@
         "actualbudget/actual"
       ],
       "changelogUrl": "https://github.com/actualbudget/actual"
-    }
+    },
+    {
+      "groupName": "beszel",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "henrygd/beszel, henrygd/beszel-agent"
+      ]
+    },
   ]
 }
