@@ -46,7 +46,7 @@
         "docker"
       ],
       "matchPackageNames": [
-        "henrygd/beszel, henrygd/beszel-agent"
+        "/^henrygd/beszel/"
       ]
     },
   ]
