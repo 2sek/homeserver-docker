@@ -45,7 +45,7 @@ services:
     restart: unless-stopped
 
   beszel-agent:
-    image: 'henrygd/beszel-agent:0.12.1'
+    image: 'henrygd/beszel-agent:0.12.2'
     container_name: 'beszel-agent'
     restart: unless-stopped
     depends_on:
