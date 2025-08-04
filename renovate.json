@@ -38,7 +38,7 @@
       "matchPackageNames": [
         "actualbudget/actual"
       ],
-      "changelogUrl": "https://github.com/actualbudget/actual"
+      "changelogUrl": "https://actualbudget.org/blog/"
     },
     {
       "groupName": "beszel",
