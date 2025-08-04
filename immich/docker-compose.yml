@@ -7,7 +7,7 @@ services:
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${UPLOAD_LOCATION}:/data
       - ${EXTERNAL_LOCATION}:/external
     networks:
       - traefik_proxy
