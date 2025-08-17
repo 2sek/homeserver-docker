@@ -1,6 +1,6 @@
 services:
   filebrowser:
-    image: hurlenko/filebrowser:v2.42.5
+    image: hurlenko/filebrowser:latest
     container_name: filebrowser
     user: 1000:1000   
     restart: unless-stopped
