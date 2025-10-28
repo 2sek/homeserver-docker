@@ -45,7 +45,7 @@ services:
     restart: unless-stopped
 
   beszel-agent:
-    image: 'henrygd/beszel-agent:0.15.0'
+    image: 'henrygd/beszel-agent:0.15.0-alpine'
     container_name: 'beszel-agent'
     restart: unless-stopped
     depends_on:
@@ -58,6 +58,14 @@ services:
       LISTEN: /beszel_socket/beszel.sock
       DOCKER_HOST: tcp://dockerproxy_beszel:2375
       KEY: ${BESZEL_SYSTEM_KEY}
+    devices: # list of devices to monitor
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/sdc:/dev/sdc
+      - /dev/sdd:/dev/sdd
+    cap_add:
+        - SYS_RAWIO # required for S.M.A.R.T. data
+        - SYS_ADMIN # required for NVMe S.M.A.R.T. data
 
 networks:
   traefik_proxy:
