@@ -36,7 +36,7 @@ services:
       homepage.description: Open source wealth management software
 
   postgres:
-    image: docker.io/library/postgres:15-alpine
+    image: docker.io/library/postgres:18-alpine
     container_name: gf-postgres
     restart: unless-stopped
     networks:
