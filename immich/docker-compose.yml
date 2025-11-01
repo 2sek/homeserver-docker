@@ -58,7 +58,7 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm
+    image: docker.io/valkey/valkey:8
     healthcheck:
       test: redis-cli ping || exit 1
     restart: unless-stopped
