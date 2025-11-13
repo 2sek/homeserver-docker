@@ -1,13 +1,5 @@
 http:
   routers:
-    traefik:
-      rule: "Host(`traefik.homeserver.internal`)"
-      service: "api@internal"
-      tls:
-        domains:
-          - main: "homeserver.internal"
-            sans:
-              - "*.homeserver.internal"
     adguard:
       rule: "Host(`adguard.homeserver.internal`)"
       service: "adguard@file"

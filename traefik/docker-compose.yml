@@ -11,7 +11,7 @@ services:
     restart: always
 
   traefik:
-    image: traefik:v3.5.4
+    image: traefik:v3.6.0
     container_name: traefik
     restart: always
     depends_on:
@@ -30,6 +30,8 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.traefik.tls: true
+      traefik.http.routers.traefik.rule: Host(`${TRAEFIK_URL}`)
+      traefik.http.routers.traefik.service: api@internal
       traefik.http.routers.traefik.entrypoints: websecure
       homepage.group: DNS & Router
       homepage.name: Traefik
