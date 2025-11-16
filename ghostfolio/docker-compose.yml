@@ -1,7 +1,7 @@
 name: ghostfolio
 services:
   ghostfolio:
-    image: docker.io/ghostfolio/ghostfolio:2.216.0
+    image: docker.io/ghostfolio/ghostfolio:2.217.1
     container_name: ghostfolio
     restart: unless-stopped
     networks:
