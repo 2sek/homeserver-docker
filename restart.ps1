@@ -2,8 +2,6 @@ $docker = Get-ChildItem -Recurse -Filter docker-compose.yml | Select-Object -Exp
 
 foreach ($dir in $docker) {
 	Push-Location $dir
-	docker compose stop
-	docker compose pull
-	docker compose up -d --remove-orphans
+	docker compose up -d --pull always --force-recreate
 	Pop-Location
 }
