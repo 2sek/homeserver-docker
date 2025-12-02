@@ -19,9 +19,7 @@
 - resources:
     label: Storage
     disk:
-        - /mnt/data
         - /mnt/media
-        - /mnt/media2
 
 # - search:
 #     provider: duckduckgo

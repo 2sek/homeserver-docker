@@ -8,8 +8,7 @@ services:
       - traefik_proxy
     volumes:
       - ${DATA_PATH}:/data/data
-      - ${EXTERNAL1}:/data/media
-      - ${EXTERNAL2}:/data/media2
+      - ${MEDIA_PATH}:/data/media
       - /var/docker/filebrowser:/config
       - /var/docker/filebrowser:/database
     environment:

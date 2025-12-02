@@ -9,7 +9,7 @@ services:
     devices:   
       - /dev/dri/renderD128:/dev/dri/renderD128 # ls /dev/dri
     group_add:
-      - "104" # getent group render | cut -d: -f3
+      - "988" # getent group render | cut -d: -f3
     networks:
       - traefik_proxy
     volumes:
@@ -17,9 +17,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/jellyfin/config:/config
       - /var/docker/jellyfin/cache:/cache
-      - ${MEDIA_PATH}:/data:ro
+      - /srv/data:/data:ro
       - /srv/media:/external:ro
-      - /srv/media2:/external2:ro
     ports:
       - 8096:8096
       - 8920:8920

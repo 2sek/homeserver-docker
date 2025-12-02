@@ -30,9 +30,7 @@ services:
       - ./config:/app/config
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ${DATA_PATH}:/mnt/data:ro
       - /srv/media:/mnt/media:ro
-      - /srv/media2:/mnt/media2:ro
     labels:
       traefik.enable: true
       traefik.http.routers.homepage.rule: Host(`${HOMEPAGE_URL}`)
