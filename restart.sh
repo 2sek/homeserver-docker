@@ -22,12 +22,22 @@ update_stack() {
   docker compose -f "$compose_file" up -d --pull always --force-recreate
 }
 
+# Create proxy network if it does not exist
+create_traefik_proxy_network() {
+  if ! docker network inspect traefik_proxy >/dev/null 2>&1; then
+    echo "Network 'traefik_proxy' does not exist. Creating it..."
+    docker network create traefik_proxy
+  fi
+}
+
 # --- Main Script ---
 
 UPDATE_ALL=false
 if [[ "$1" == "--all" ]]; then
   UPDATE_ALL=true
 fi
+
+create_traefik_proxy_network
 
 for dir in $(find_compose_dirs); do
   if ! $UPDATE_ALL; then
