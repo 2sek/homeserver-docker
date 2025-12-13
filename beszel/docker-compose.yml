@@ -12,6 +12,9 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
+      APP_URL: https://${BESZEL_URL}
+    env_file:
+      - .env
     labels:
       traefik.enable: true
       traefik.http.routers.beszel.tls: true
@@ -34,7 +37,6 @@ services:
   dockerproxy:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
     container_name: dockerproxy_beszel
-    privileged: true
     environment:
         CONTAINERS: 1 # Allow access to viewing containers
         INFO: 1 # Allow access to system information
@@ -53,13 +55,22 @@ services:
     network_mode: host
     volumes:
       - /var/docker/beszel/socket:/beszel_socket
-      - /srv/data/.beszel:/extra-filesystems/data:ro
+      - /var/docker/beszel/agent-data:/var/lib/beszel-agent
+      - /mnt/media1/.beszel:/extra-filesystems/sdb1__Media1:ro
+      - /mnt/media2/.beszel:/extra-filesystems/sdb2__Media2:ro
+      - /srv/data/.beszel:/extra-filesystems/sdc1__Data:ro
+    devices:
+      - /dev/nvme0:/dev/nvme0
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/sdc:/dev/sdc
     environment:
       LISTEN: /beszel_socket/beszel.sock
       DOCKER_HOST: tcp://dockerproxy_beszel:2375
       KEY: ${BESZEL_SYSTEM_KEY}
-    devices: # list of devices to monitor
-        - /dev/nvme0n1:/dev/nvme0n1
+      TOKEN: ${BESZEL_TOKEN}
+      HUB_URL: https://${BESZEL_URL}
+      DISK_USAGE_CACHE: 30m
     cap_add:
         - SYS_RAWIO # required for S.M.A.R.T. data
         - SYS_ADMIN # required for NVMe S.M.A.R.T. data
