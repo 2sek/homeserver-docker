@@ -9,7 +9,7 @@ services:
       - default_paperless
 
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.1
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.2
     container_name: paperless
     restart: unless-stopped
     depends_on:
