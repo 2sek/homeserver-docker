@@ -1,4 +1,5 @@
 #!/bin/bash
+#  Tip: Use an alias pointing to this script.
 
 # --- Colors ---
 RED='\033[0;31m'
