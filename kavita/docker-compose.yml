@@ -27,6 +27,10 @@ services:
       homepage.icon: kavita.svg
       homepage.href: https://${KAVITA_URL}
       homepage.description: Novel and manga manager
+      homepage.widget.type: kavita
+      homepage.widget.key: ${KAVITA_API_KEY}
+      homepage.widget.url: http://kavita:5000
+      homepage.showStats: false
 
 networks:
   traefik_proxy:

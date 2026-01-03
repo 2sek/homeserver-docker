@@ -24,13 +24,18 @@ services:
       traefik.http.routers.qbittorrent.tls: true
       traefik.http.routers.qbittorrent.entrypoints: websecure
       traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
-      traefik.http.services.qbittorrent.loadbalancer.passhostheader: false
       traefik.docker.network: traefik_proxy
       homepage.group: Download
       homepage.name: qBittorrent
       homepage.icon: qbittorrent.svg
       homepage.href: https://${QBITTORRENT_URL}
       homepage.description: Torrent management
+      homepage.widget.type: qbittorrent
+      homepage.widget.url: http://qbittorrent:8080
+      homepage.widget.username: ${QBITTORRENT_USER}
+      homepage.widget.password: ${QBITTORRENT_PASSWORD}
+      homepage.widget.enableLeechProgress: true
+      homepage.showStats: false
 
 networks:
   traefik_proxy:

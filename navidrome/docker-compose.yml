@@ -9,11 +9,14 @@ services:
     networks:
       - traefik_proxy
     environment:
-      ND_SCANSCHEDULE: 1h
-      ND_ENABLEEXTERNALSERVICES: false
-      ND_ADDRESS: 0.0.0.0
+      ND_LASTFM_ENABLED: false
+      ND_SCANNER_PURGEMISSING: "full"
+      ND_BACKUP_PATH: /backups
+      ND_BACKUP_SCHEDULE: "0 0 * * *"
+      ND_BACKUP_COUNT: 3
     volumes:
       - "/var/docker/navidrome:/data"
+      - "/var/docker/navidrome/backups:/backups"
       - "${MUSIC_DIR}:/music:ro"
     labels:
       traefik.enable: true
@@ -25,6 +28,12 @@ services:
       homepage.icon: navidrome.svg
       homepage.href: https://${NAVIDROME_URL}
       homepage.description: Music library management
+      homepage.widget.type: navidrome
+      homepage.widget.url: http://navidrome:4533
+      homepage.widget.user: ${NAVIDROME_API_USER}
+      homepage.widget.token: ${NAVIDROME_API_TOKEN}
+      homepage.widget.salt: ${NAVIDROME_API_TOKEN_SALT}
+      homepage.showStats: false
 
 networks:
   traefik_proxy:
