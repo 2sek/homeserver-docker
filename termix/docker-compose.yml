@@ -1,0 +1,24 @@
+services:
+    termix:
+        image: ghcr.io/lukegus/termix:release-1.10.0
+        container_name: termix
+        restart: unless-stopped
+        user: 1000:1000
+        networks:
+            - traefik_proxy
+        volumes:
+            - /var/docker/termix:/app/data
+        labels:
+            traefik.enable: true
+            traefik.http.services.termix.loadbalancer.server.port: 8080
+            traefik.http.routers.termix.entrypoints: websecure
+            traefik.http.routers.termix.tls: true
+            homepage.group: Server Management
+            homepage.name: Termix
+            homepage.icon: termix.svg
+            homepage.href: https://${TERMIX_URL}
+            homepage.description: All-in-one server management platform
+
+networks:
+    traefik_proxy:
+        external: true
