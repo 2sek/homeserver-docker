@@ -1,7 +1,7 @@
 services:
   beszel:
-    image: 'henrygd/beszel:0.17.0'
-    container_name: 'beszel'
+    image: "henrygd/beszel:0.17.0"
+    container_name: "beszel"
     restart: unless-stopped
     volumes:
       - /var/docker/beszel/data:/beszel_data
@@ -26,7 +26,7 @@ services:
       homepage.href: https://${BESZEL_URL}
       homepage.description: Lightweight service monitoring tool
       homepage.widget.type: beszel
-      homepage.widget.url: https://${BESZEL_URL}
+      homepage.widget.url: http://beszel:8090
       homepage.widget.username: ${HOMEPAGE_VAR_SERVICE_BESZEL_LOGIN}
       homepage.widget.password: ${HOMEPAGE_VAR_SERVICE_BESZEL_PASSWORD}
       homepage.widget.systemId: ${HOMEPAGE_VAR_SERVICE_BESZEL_SYSTEM}
@@ -38,17 +38,17 @@ services:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
     container_name: dockerproxy_beszel
     environment:
-        CONTAINERS: 1 # Allow access to viewing containers
-        INFO: 1 # Allow access to system information
+      CONTAINERS: 1 # Allow access to viewing containers
+      INFO: 1 # Allow access to system information
     networks:
       - beszel
     volumes:
-        - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
 
   beszel-agent:
-    image: 'henrygd/beszel-agent:0.17.0-alpine'
-    container_name: 'beszel-agent'
+    image: "henrygd/beszel-agent:0.17.0-alpine"
+    container_name: "beszel-agent"
     restart: unless-stopped
     depends_on:
       - dockerproxy
@@ -72,8 +72,8 @@ services:
       HUB_URL: https://${BESZEL_URL}
       DISK_USAGE_CACHE: 30m
     cap_add:
-        - SYS_RAWIO # required for S.M.A.R.T. data
-        - SYS_ADMIN # required for NVMe S.M.A.R.T. data
+      - SYS_RAWIO # required for S.M.A.R.T. data
+      - SYS_ADMIN # required for NVMe S.M.A.R.T. data
 
 networks:
   traefik_proxy:
