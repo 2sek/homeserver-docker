@@ -1,0 +1,33 @@
+services:
+    mkv-muxing-batch-gui:
+        image: jlesage/mkv-muxing-batch-gui:latest
+        container_name: mkv-muxing-batch-gui
+        restart: unless-stopped
+        networks:
+            - traefik_proxy
+        volumes:
+            - "/var/docker/mkv-muxing-batch-gui:/config:rw"
+            - "/srv/media:/storage:ro"
+            - "/srv/media/output:/output:rw"
+        environment:
+            USER_ID: 1000
+            GROUP_ID: 1000
+            DARK_MODE: 1
+        cap_drop:
+            - CAP_SYS_ADMIN
+        labels:
+            traefik.enable: true
+            traefik.http.services.mkv-muxing-batch-gui.loadbalancer.server.port: 5800
+            traefik.http.routers.mkv-muxing-batch-gui.entrypoints: websecure
+            traefik.http.routers.mkv-muxing-batch-gui.tls: true
+            traefik.http.routers.mkv-muxing-batch-gui.rule: Host(`${MKV_MUXING_GUI_URL}`)
+            homepage.group: Tools
+            homepage.name: MKV Muxing Batch GUI
+            homepage.icon: mkvtoolnix.webp
+            homepage.href: https://${MKV_MUXING_GUI_URL}
+            homepage.description: GUI for mkvmerge batch jobs
+            homepage.showStats: false
+
+networks:
+    traefik_proxy:
+        external: true
