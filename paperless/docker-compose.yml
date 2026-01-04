@@ -14,6 +14,7 @@ services:
     restart: unless-stopped
     depends_on:
       - paperless-broker
+    user: 1000:1000
     networks:
       - traefik_proxy
       - default_paperless
@@ -26,19 +27,21 @@ services:
       - ${DOCS}/consume:/usr/src/paperless/consume
     environment:
       PAPERLESS_REDIS: redis://paperless-broker:6379
+      PAPERLESS_URL: https://${PAPERLESS_URL}
+      PAPERLESS_OCR_LANGUAGE: ${PAPERLESS_OCR_LANGUAGE}
       USERMAP_UID: 1000
       USERMAP_GID: 1000
     labels:
       traefik.enable: true
-      traefik.http.routers.paperless.entrypoints: web
+      traefik.http.routers.paperless.entrypoints: websecure
       traefik.http.routers.paperless.rule: Host(`${PAPERLESS_URL}`)
-      traefik.http.routers.paperless.tls: false
+      traefik.http.routers.paperless.tls: true
       traefik.http.services.paperless.loadbalancer.server.port: 8000
       traefik.docker.network: traefik_proxy
       homepage.group: Cloud & Storage
       homepage.name: Paperless
       homepage.icon: paperless.svg
-      homepage.href: http://${PAPERLESS_URL}
+      homepage.href: https://${PAPERLESS_URL}
       homepage.description: Document archive & management
 
 networks:
