@@ -3,13 +3,14 @@ services:
     image: ghcr.io/alexta69/metube:latest
     container_name: metube
     restart: unless-stopped
+    user: 1000:1000
     networks:
       - traefik_proxy
     volumes:
       - ${METUBE_DOWNLOADS}:/downloads
       - ${METUBE_COOKIES}:/cookies
     environment:
-      YTDL_OPTIONS: '{cookiefile":"/cookies/cookies.txt"}'
+      - YTDL_OPTIONS={"cookiefile":"/cookies/cookies.txt"}
     labels:
       traefik.enable: true
       traefik.http.routers.metube.tls: true
