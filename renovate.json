@@ -28,13 +28,6 @@
       "groupName": "beszel",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["/^henrygd/beszel/"]
-    },
-    {
-      "matchPackageNames": ["lscr.io/linuxserver/kavita"],
-      "matchDatasources": ["docker"],
-      "versioning": "regex-loose",
-      "extractVersion": "^version-v(?<version>\\d+\\.\\d+\\.\\d+(?:\\.\\d+)?$)",
-      "allowedVersions": "^\\d+\\.\\d+\\.\\d+(?:\\.\\d+)?$"
     }
   ]
 }
