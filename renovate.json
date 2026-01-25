@@ -32,6 +32,7 @@
     {
       "matchPackageNames": ["lscr.io/linuxserver/kavita"],
       "matchDatasources": ["docker"],
+      "allowedTags": ["^version-v"],
       "versioning": "regex-loose",
       "extractVersion": "^version-v(?<version>\\d+\\.\\d+\\.\\d+(?:\\.\\d+)?$)"
     }
