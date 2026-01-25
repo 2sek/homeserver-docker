@@ -1,53 +1,37 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
   "versioning": "docker",
   "schedule": ["on monday and thursday"],
   "reviewers": ["2sek"],
   "packageRules": [
     {
       "groupName": "immich",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "ghcr.io/immich-app/**"
-      ]
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/immich-app/**"]
     },
     {
-      "matchPackageNames": [
-        "hurlenko/filebrowser"
-      ],
-      "matchDatasources": [
-        "docker"
-      ],
+      "matchPackageNames": ["hurlenko/filebrowser"],
+      "matchDatasources": ["docker"],
       "changelogUrl": "https://github.com/filebrowser/filebrowser"
     },
     {
-      "matchPackageNames": [
-        "jellyfin/jellyfin"
-      ],
-      "matchDatasources": [
-        "docker"
-      ],
+      "matchPackageNames": ["jellyfin/jellyfin"],
+      "matchDatasources": ["docker"],
       "changelogUrl": "https://github.com/jellyfin/jellyfin"
     },
     {
-      "matchPackageNames": [
-        "actualbudget/actual"
-      ],
+      "matchPackageNames": ["actualbudget/actual"],
       "changelogUrl": "https://actualbudget.org/blog/"
     },
     {
       "groupName": "beszel",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "/^henrygd/beszel/"
-      ]
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["/^henrygd/beszel/"]
     },
+    {
+      "matchPackageNames": ["linuxserver/kavita"],
+      "extractVersion": "^version-(?<version>.*)$"
+    }
   ]
 }
