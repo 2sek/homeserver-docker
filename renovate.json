@@ -30,8 +30,9 @@
       "matchPackageNames": ["/^henrygd/beszel/"]
     },
     {
-      "matchPackageNames": ["lscr.io/linuxserver/kavita"],
+      "matchPackageNames": ["inuxserver/kavita"],
       "matchDatasources": ["docker"],
+      "versioning": "regex",
       "extractVersion": "^version-v(?<version>.*)$"
     }
   ]
