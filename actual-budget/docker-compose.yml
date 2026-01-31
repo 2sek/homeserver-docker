@@ -24,6 +24,7 @@ services:
       homepage.icon: actual-budget.svg
       homepage.href: https://${ACTUAL_URL}
       homepage.description: Personal finance manager
+      homepage.showStats: false
 
 networks:
   traefik_proxy:

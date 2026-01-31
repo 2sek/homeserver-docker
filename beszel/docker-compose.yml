@@ -20,18 +20,11 @@ services:
       traefik.http.routers.beszel.tls: true
       traefik.http.routers.beszel.entrypoints: websecure
       traefik.http.services.beszel.loadbalancer.server.port: 8090
-      homepage.group: Monitoring
+      homepage.group: Monitoring & Management
       homepage.name: Beszel
       homepage.icon: beszel.svg
       homepage.href: https://${BESZEL_URL}
       homepage.description: Lightweight service monitoring tool
-      homepage.widget.type: beszel
-      homepage.widget.url: http://beszel:8090
-      homepage.widget.username: ${HOMEPAGE_VAR_SERVICE_BESZEL_LOGIN}
-      homepage.widget.password: ${HOMEPAGE_VAR_SERVICE_BESZEL_PASSWORD}
-      homepage.widget.systemId: ${HOMEPAGE_VAR_SERVICE_BESZEL_SYSTEM}
-      homepage.widget.fields: '["status", "cpu", "memory", "network"]'
-      homepage.widget.version: 2
       homepage.showStats: false
 
   dockerproxy:
