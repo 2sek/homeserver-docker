@@ -1,6 +1,6 @@
 services:
   beszel:
-    image: "henrygd/beszel:0.18.2"
+    image: "henrygd/beszel:0.18.3"
     container_name: "beszel"
     restart: unless-stopped
     volumes:
@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
 
   beszel-agent:
-    image: "henrygd/beszel-agent:0.18.2-alpine"
+    image: "henrygd/beszel-agent:0.18.3-alpine"
     container_name: "beszel-agent"
     restart: unless-stopped
     depends_on:
