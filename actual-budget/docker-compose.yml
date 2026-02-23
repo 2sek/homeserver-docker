@@ -1,6 +1,6 @@
 services:
   actualbudget:
-    image: ghcr.io/actualbudget/actual:26.2.0-alpine
+    image: ghcr.io/actualbudget/actual:26.2.1-alpine
     container_name: actual-budget
     restart: unless-stopped
     environment:
