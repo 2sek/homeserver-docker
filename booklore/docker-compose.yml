@@ -1,6 +1,6 @@
 services:
   booklore:
-    image: booklore/booklore:v2.0.1
+    image: booklore/booklore:v2.0.2
     container_name: booklore
     networks:
       - traefik_proxy
