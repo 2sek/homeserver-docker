@@ -1,0 +1,25 @@
+services:
+  seerr:
+    image: ghcr.io/seerr-team/seerr:v3.1.0
+    container_name: seerr
+    restart: unless-stopped
+    user: 1000:1000
+    init: true
+    networks:
+      - traefik_proxy
+    volumes:
+      - /var/docker/seerr/config:/app/config
+    labels:
+      traefik.enable: true
+      traefik.http.routers.seerr.tls: true
+      traefik.http.routers.seerr.entrypoints: websecure
+      traefik.http.services.seerr.loadbalancer.server.port: 5055
+      homepage.group: Media & Streaming
+      homepage.name: Seerr
+      homepage.icon: seerr.svg
+      homepage.href: https://${SEERR_URL}
+      homepage.description: Media library management for Jellyfin
+
+networks:
+  traefik_proxy:
+    external: true
