@@ -1,0 +1,58 @@
+services:
+  grimmory:
+    image: grimmory/grimmory:v3.1.0
+    container_name: grimmory
+    environment:
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+      - TZ=${TZ}
+      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_USERNAME=${DB_USER}
+      - DATABASE_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    volumes:
+      - /var/docker/grimmory/data:/app/data
+      - ${BOOKS}:/books
+      - ${BOOKDROP}:/bookdrop
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+      - grimmory
+    labels:
+      traefik.enable: true
+      traefik.http.routers.grimmory.tls: true
+      traefik.http.routers.grimmory.entrypoints: websecure
+      traefik.http.services.grimmory.loadbalancer.server.port: 6060
+      homepage.group: Media & Streaming
+      homepage.name: Grimmory
+      homepage.icon: grimmory.svg
+      homepage.href: https://${GRIMMORY_URL}
+      homepage.description: Books
+
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:11.4.5
+    environment:
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
+      - TZ=${TZ}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - /var/docker/grimmory/mariadb/config:/config
+    restart: unless-stopped
+    networks:
+      - grimmory
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  traefik_proxy:
+    external: true
+  grimmory:
