@@ -28,9 +28,9 @@ services:
       traefik.http.services.grimmory.loadbalancer.server.port: 6060
       homepage.group: Media & Streaming
       homepage.name: Grimmory
-      homepage.icon: grimmory.svg
+      homepage.icon: sh-grimmory.svg
       homepage.href: https://${GRIMMORY_URL}
-      homepage.description: Books
+      homepage.description: Grimmory is a self-hosted digital library for people who take their reading seriously
 
   mariadb:
     image: lscr.io/linuxserver/mariadb:11.4.5
