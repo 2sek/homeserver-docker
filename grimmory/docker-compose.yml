@@ -1,11 +1,12 @@
 services:
   grimmory:
-    image: grimmory/grimmory:v3.1.0
+    image: grimmory/grimmory:v3.2.2
     container_name: grimmory
     environment:
       - USER_ID=${USER_ID}
       - GROUP_ID=${GROUP_ID}
       - TZ=${TZ}
+      - DISK_TYPE=${DISK_TYPE}
       - DATABASE_URL=${DATABASE_URL}
       - DATABASE_USERNAME=${DB_USER}
       - DATABASE_PASSWORD=${DB_PASSWORD}
