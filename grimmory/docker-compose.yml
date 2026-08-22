@@ -33,7 +33,7 @@ services:
       homepage.description: Grimmory is a self-hosted digital library for people who take their reading seriously
 
   mariadb:
-    image: lscr.io/linuxserver/mariadb:11.4.5
+    image: lscr.io/linuxserver/mariadb:11.8.8
     environment:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
