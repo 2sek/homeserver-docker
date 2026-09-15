@@ -1,6 +1,6 @@
 services:
   grimmory:
-    image: grimmory/grimmory:v3.3.3
+    image: grimmory/grimmory:v3.4.0
     container_name: grimmory
     environment:
       - USER_ID=${USER_ID}
