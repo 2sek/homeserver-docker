@@ -11,7 +11,7 @@ services:
     restart: always
 
   traefik:
-    image: traefik:v3.7.15
+    image: traefik:v3.7.16
     container_name: traefik
     restart: always
     depends_on:
