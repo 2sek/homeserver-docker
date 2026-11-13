@@ -26,7 +26,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ./config:/etc/traefik/
-      - ./certs:/etc/certs:ro
+      - $CERTS:/etc/certs:ro
     labels:
       traefik.enable: true
       traefik.http.routers.traefik.tls: true
