@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    container_name: resume-database
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - /var/docker/reactive-resume/postgres:/var/lib/postgresql
+    networks:
+     - resume
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  reactive-resume:
+    image: ghcr.io/reactive-resume/reactive-resume:v6.1.1
+    restart: unless-stopped
+    container_name: reactive-resume
+    env_file: .env
+    environment:
+      APP_URL: https://${RESUME_URL}
+      USER_ID: 1000
+      GROUP_ID: 1000
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/postgres
+    volumes:
+      - /var/docker/reactive-resume/data:/app/data
+    networks:
+     - resume
+     - traefik_proxy
+    depends_on:
+      postgres:
+        condition: service_healthy
+    labels:
+      traefik.enable: true
+      traefik.http.services.reactive-resume.loadbalancer.server.port: 3000
+      traefik.http.routers.reactive-resume.entrypoints: websecure
+      traefik.http.routers.reactive-resume.tls: true
+      traefik.http.routers.reactive-resume.rule: Host(`${RESUME_URL}`)
+      homepage.group: Tools
+      homepage.name: Reactive Resume
+      homepage.icon: reactive-resume.svg
+      homepage.href: https://${RESUME_URL}
+      homepage.description: A self-hosted resume builder.
+      homepage.showStats: false
+
+networks:
+  resume:
+    internal: true
+  traefik_proxy:
+      external: true
