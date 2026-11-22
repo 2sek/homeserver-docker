@@ -37,7 +37,7 @@ services:
       homepage.showStats: false
 
   postgres:
-    image: docker.io/library/postgres:15-alpine
+    image: docker.io/library/postgres:19-alpine
     container_name: gf-postgres
     restart: unless-stopped
     networks:
