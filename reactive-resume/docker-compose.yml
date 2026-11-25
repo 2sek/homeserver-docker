@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:18
+    image: postgres:19
     restart: unless-stopped
     container_name: resume-database
     environment:
